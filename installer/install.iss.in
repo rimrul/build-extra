@@ -1352,6 +1352,28 @@ begin
         end;
     end;
     if FileExists(ProgramData + '\Git\config') then begin
+#ifdef IS64
+        FileName:=ExpandConstant('{tmp}')+'\packsize.txt';
+        if not Exec(AppDir+'\{#MINGW_BITNESS}\bin\git.exe','config -f config pack.packsizelimit  > "'+FileName+'"',SW_HIDE,ewWaitUntilTerminated,i) then begin
+            Msg:='Unable to read packsize limit';
+
+            // This is not a critical error, so just notify the user and continue.
+            SuppressibleMsgBox(Msg,mbError,MB_OK,IDOK);
+            Log(Msg);
+        end else if not LoadStringFromFile(FileName,PackSizeLimit) then begin
+            Msg:='Unable to read redirected packsize limit';
+            // This is not a critical error, so just notify the user and continue.
+            SuppressibleMsgBox(Msg,mbError,MB_OK,IDOK);
+            Log(Msg);
+        end else if (PackSizeLimit='2g\n') and not Exec(AppDir+'\{#MINGW_BITNESS}\bin\git.exe','config -f config --unset pack.packsizelimit',SW_HIDE,ewWaitUntilTerminated,i) then begin
+            Msg:='Unable to unset packsize limit';
+
+            // This is not a critical error, so just notify the user and continue.
+            SuppressibleMsgBox(Msg,mbError,MB_OK,IDOK);
+            Log(Msg);
+        end;
+        DeleteFile(FileName);
+#endif
         Cmd:='http.sslCAInfo "' + AppDir + '/{#MINGW_BITNESS}/ssl/certs/ca-bundle.crt"';
         StringChangeEx(Cmd,'\','/',True);
         if not Exec(AppDir+'\{#MINGW_BITNESS}\bin\git.exe','config -f config '+Cmd,
