@@ -38,6 +38,8 @@ package() {
   install -d -m755 $pkgdir/usr/bin
   install -d -m755 $pkgdir/usr/share/git
   install -d -m755 $pkgdir/$mingwdir/bin
+  install -d -m755 $pkgdir/$mingwdir/etc
+  install -d -m755 $pkgdir/$mingwdir/share/antiword
   install -m644 $startdir/inputrc $pkgdir/etc
   install -m644 $startdir/vimrc $pkgdir/etc
   install -m755 $startdir/vi $pkgdir/usr/bin
@@ -49,4 +51,41 @@ package() {
   install -m755 $startdir/bash_profile.sh $pkgdir/etc/profile.d
   install -m644 $startdir/msys2-32.ico $pkgdir/usr/share/git
   install -m644 $startdir/99-post-install-cleanup.post $pkgdir/etc/post-install
+  install -m755 $startdir/docx2txt $pkgdir/$mingwdir/bin
+  install -m755 $startdir/astextplain $pkgdir/$mingwdir/bin
+  install -m755 $startdir/antiword.exe $pkgdir/$mingwdir/bin
+  install -m755 $startdir/gitconfig $pkgdir/$mingwdir/etc
+  install -m755 $startdir/gitattributes $pkgdir/$mingwdir/etc
+  install -m755 $startdir/antiword/8859-1.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/8859-2.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/8859-3.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/8859-4.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/8859-5.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/8859-6.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/8859-7.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/8859-8.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/8859-9.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/8859-10.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/8859-11.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/8859-13.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/8859-14.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/8859-15.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/8859-16.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/cp437.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/cp850.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/cp852.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/cp862.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/cp864.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/cp866.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/cp1250.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/cp1251.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/cp1252.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/koi8-r.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/koi8-u.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/MacCyrillic.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/MacRoman.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/roman.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/UTF-8.txt $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/antiword/fontnames $pkgdir/$mingwdir/share/antiword
+  install -m755 $startdir/unzip.exe $pkgdir/usr/bin
 }
