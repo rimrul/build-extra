@@ -266,6 +266,12 @@ external 'RmShutdown@Rstrtmgr.dll stdcall delayload';
 function RmRestart(dwSessionHandle:DWORD;dwRestartFlags:DWORD;fnStatus:RM_WRITE_STATUS_CALLBACK):DWORD;
 external 'RmRestart@Rstrtmgr.dll stdcall delayload';
 
+// Returns true if the ProcessName matches the name of a known GPG daemon process
+function IsGPGDaemonProcess(ProcessName:String):Boolean;
+begin
+    Result:=('gpg-agent'=ProcessName) or ('scdaemon'=ProcessName) or ('dirmngr'=ProcessName) or ('keyboxd'=ProcessName);
+end;
+
 {
     Wrapper code
 }
@@ -311,7 +317,7 @@ begin
                 Processes[Have].Name:=ArrayToString(AppList[i].strAppName);
                 Processes[Have].Restartable:=AppList[i].bRestartable;
                 ProcessName:=ChangeFileExt(Processes[Have].Name, '');
-                if ('ssh-add'=ProcessName) or ('ssh-agent'=ProcessName) or ('ssh-pageant'=ProcessName) or ('gpg-agent'=ProcessName) or ('scdaemon'=ProcessName) or ('dirmngr'=ProcessName) or ('keyboxd'=ProcessName) then
+                if ('ssh-add'=ProcessName) or ('ssh-agent'=ProcessName) or ('ssh-pageant'=ProcessName) or IsGPGDaemonProcess(ProcessName) then
                     Processes[Have].ToTerminate:=True;
             end;
             Result:=Handle;
