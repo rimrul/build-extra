@@ -311,7 +311,7 @@ begin
                 Processes[Have].Name:=ArrayToString(AppList[i].strAppName);
                 Processes[Have].Restartable:=AppList[i].bRestartable;
                 ProcessName:=ChangeFileExt(Processes[Have].Name, '');
-                if ('ssh-add'=ProcessName) or ('ssh-agent'=ProcessName) or ('ssh-pageant'=ProcessName) or ('gpg-agent'=ProcessName) or ('scdaemon'=ProcessName) then
+                if ('ssh-add'=ProcessName) or ('ssh-agent'=ProcessName) or ('ssh-pageant'=ProcessName) or ('gpg-agent'=ProcessName) or ('scdaemon'=ProcessName) or ('dirmngr'=ProcessName) or ('keyboxd'=ProcessName) then
                     Processes[Have].ToTerminate:=True;
             end;
             Result:=Handle;
